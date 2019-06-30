@@ -212,14 +212,14 @@ func RemoteCall(target, req interface{}, callback interface{}) error {
 
 func init() {
 	// 仅供demo使用的
-	proc.RegisterProcessor("tcp.demo", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback) {
+	proc.RegisterProcessor("tcp.demo", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback, args ...interface{}) {
 
 		bundle.SetTransmitter(new(tcp.TCPMessageTransmitter))
 		bundle.SetHooker(proc.NewMultiHooker(new(tcp.MsgHooker), new(TypeRPCHooker)))
 		bundle.SetCallback(proc.NewQueuedEventCallback(userCallback))
 	})
 
-	proc.RegisterProcessor("ws.demo", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback) {
+	proc.RegisterProcessor("ws.demo", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback, args ...interface{}) {
 
 		bundle.SetTransmitter(new(gorillaws.WSMessageTransmitter))
 		bundle.SetHooker(proc.NewMultiHooker(new(gorillaws.MsgHooker), new(TypeRPCHooker)))

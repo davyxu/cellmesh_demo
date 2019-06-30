@@ -1,9 +1,9 @@
 package hubapi
 
 import (
+	"github.com/davyxu/cellmesh/service"
 	"github.com/davyxu/cellmesh_demo/basefx/model"
 	"github.com/davyxu/cellmesh_demo/svc/hub/model"
-	"github.com/davyxu/cellmesh/service"
 	"github.com/davyxu/cellnet"
 	"github.com/davyxu/cellnet/proc"
 	"github.com/davyxu/cellnet/proc/tcp"
@@ -40,7 +40,7 @@ func (self subscriberHooker) OnOutboundEvent(inputEvent cellnet.Event) (outputEv
 
 func init() {
 
-	proc.RegisterProcessor("tcp.hub", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback) {
+	proc.RegisterProcessor("tcp.hub", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback, args ...interface{}) {
 
 		bundle.SetTransmitter(new(tcp.TCPMessageTransmitter))
 		bundle.SetHooker(proc.NewMultiHooker(new(subscriberHooker), new(tcp.MsgHooker)))

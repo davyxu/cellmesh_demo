@@ -1,10 +1,10 @@
 package basefx
 
 import (
-	"github.com/davyxu/cellmesh_demo/basefx/model"
-	"github.com/davyxu/cellmesh_demo/proto"
 	"github.com/davyxu/cellmesh/discovery"
 	"github.com/davyxu/cellmesh/service"
+	"github.com/davyxu/cellmesh_demo/basefx/model"
+	"github.com/davyxu/cellmesh_demo/proto"
 	"github.com/davyxu/cellnet"
 	"github.com/davyxu/cellnet/peer"
 	"github.com/davyxu/cellnet/proc"
@@ -107,8 +107,7 @@ func GetRemoteServiceWANAddress(svcName, svcid string) string {
 
 	wanAddr := desc.GetMeta("WANAddress")
 
-
-	if wanAddr != ""{
+	if wanAddr != "" {
 		return wanAddr
 	}
 

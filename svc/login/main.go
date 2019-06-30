@@ -21,7 +21,7 @@ func main() {
 	basefx.Init("login")
 
 	// 与客户端通信的处理器
-	proc.RegisterProcessor("ws.client", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback) {
+	proc.RegisterProcessor("ws.client", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback, args ...interface{}) {
 
 		bundle.SetTransmitter(new(gorillaws.WSMessageTransmitter))
 		bundle.SetHooker(proc.NewMultiHooker(new(gorillaws.MsgHooker)))

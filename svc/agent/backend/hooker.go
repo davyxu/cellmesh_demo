@@ -1,9 +1,9 @@
 package backend
 
 import (
+	"github.com/davyxu/cellmesh/service"
 	"github.com/davyxu/cellmesh_demo/proto"
 	"github.com/davyxu/cellmesh_demo/svc/agent/model"
-	"github.com/davyxu/cellmesh/service"
 	"github.com/davyxu/cellnet"
 	"github.com/davyxu/cellnet/codec"
 	"github.com/davyxu/cellnet/msglog"
@@ -160,7 +160,7 @@ func init() {
 	msglog.SetMsgLogRule("proto.TransmitACK", msglog.MsgLogRule_BlackList)
 
 	// 适用于后端服务的处理器
-	proc.RegisterProcessor("svc.backend", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback) {
+	proc.RegisterProcessor("svc.backend", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback, args ...interface{}) {
 
 		bundle.SetTransmitter(new(tcp.TCPMessageTransmitter))
 		bundle.SetHooker(proc.NewMultiHooker(
@@ -171,7 +171,7 @@ func init() {
 	})
 
 	// 适用于
-	proc.RegisterProcessor("agent.backend", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback) {
+	proc.RegisterProcessor("agent.backend", func(bundle proc.ProcessorBundle, userCallback cellnet.EventCallback, args ...interface{}) {
 
 		bundle.SetTransmitter(new(tcp.TCPMessageTransmitter))
 		bundle.SetHooker(proc.NewMultiHooker(
